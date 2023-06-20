@@ -1,6 +1,24 @@
-# Getting Started with Create React App
+# Overtime Income calculator using React-Redux
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Objective
+
+The project aims to act as a calculator for the overtime income of a person per week. This is achieved with the use of:
+- Node.js
+- React.js
+- Redux
+- Google Material UI (MUI)
+
+### Challenges and Opportunities
+
+While the development of the React application was rather simple, its integration with redux state containers and subsequent shift from CSS to google MUI turned out to be the only real challenges. While figuring out how the storage and procedure of these storage containers did take time, it was not too long (a day) before I could implement the redux logic. The entire conversion and revamp to MUI did end up making the UI less appealing but whatever possible was salvaged.
+
+Most of the issues encountered were simply resolved by the use of beautiful redux and MUI documentation and some Youtube videos. I look forward to implementing MUI better in my future projects.
+
+## How to Use
+
+The usage of this project is very simple. Just enter your base weekly overtime income and pick a range of hours from the drop-down menu. Click on the '$' button below to generate the result.
 
 ## Available Scripts
 
