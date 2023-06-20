@@ -1,8 +1,8 @@
 import React from "react";
 import Form from "./form";
 import "../styles/styles.css";
-import Display from "./display";
-import { CssBaseline, Grid } from "@mui/material";
+import { Box, CssBaseline, Grid } from "@mui/material";
+import moneypic from "../moneyyyy.png";
 
 export default function Main() {
   return (
@@ -15,7 +15,16 @@ export default function Main() {
       >
         <CssBaseline />
         <Grid item xs={8}>
-          <Display />
+          <Box
+            sx={{
+              textAlign: "center",
+              backgroundColor: "whitesmoke",
+              backgroundImage: `url(${moneypic})`,
+              backgroundPosition: "center",
+              backgroundSize: "30%",
+              height: "715px",
+            }}
+          ></Box>
         </Grid>
         <Grid item xs={4}>
           <Form />

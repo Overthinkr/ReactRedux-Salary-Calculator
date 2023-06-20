@@ -1,29 +1,26 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import moneypic from "../moneyyyy.png";
 import "../styles/styles.css";
-import { Box, Typography } from "@mui/material";
-
-const marglength = (final) => {
-  return 30 - final.toLocaleString().length;
-};
+import { Hidden, Typography } from "@mui/material";
 
 export default function Display() {
   const basesalary = useSelector((state) => state.basesalary.basesalary);
   const hours = useSelector((state) => state.hours.hours);
-  const final = basesalary * hours;
+
+  let final = 0;
+
+  if (hours === 1) {
+    final = basesalary * 5;
+  } else if (hours === 2) {
+    final = basesalary * 10;
+  } else if (hours === 3) {
+    final = basesalary * 20;
+  } else if (hours === 4) {
+    final = basesalary * 30;
+  }
 
   return (
-    <Box
-      sx={{
-        textAlign: "center",
-        backgroundColor: "whitesmoke",
-        backgroundImage: `url(${moneypic})`,
-        backgroundPosition: "center",
-        backgroundSize: "30%",
-        height: "715px",
-      }}
-    >
+    <>
       {final !== 0 ? (
         <>
           <br />
@@ -31,14 +28,11 @@ export default function Display() {
 
           <Typography
             variant="h3"
-            component="h1"
+            component="h2"
             sx={{
-              color: "green",
+              color: "#00ff00",
               fontFamily: "cursive",
-              marginTop: 36,
-              marginX: marglength(final),
-              fontSize: 60,
-              background: "white",
+              fontSize: 50,
             }}
           >
             $ {final.toLocaleString()}
@@ -47,6 +41,6 @@ export default function Display() {
       ) : (
         <p></p>
       )}
-    </Box>
+    </>
   );
 }

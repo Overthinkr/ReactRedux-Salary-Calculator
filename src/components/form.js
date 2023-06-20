@@ -12,8 +12,13 @@ import {
   createTheme,
   Typography,
   Paper,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import PaidIcon from "@mui/icons-material/Paid";
+import Display from "./display";
 
 const theme = createTheme();
 
@@ -41,6 +46,10 @@ export default function Form() {
     setHours(event.target.value);
   };
 
+  const handleChange = (event) => {
+    setHours(event.target.value);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Paper elevation={22}>
@@ -57,7 +66,7 @@ export default function Form() {
             component="h1"
             sx={{ color: "#FFF", fontFamily: "sans-serif  " }}
           >
-            SALARY CALCULATOR
+            OVERTIME PAY CALCULATOR
           </Typography>
           <Typography variant="h6" component="h4" sx={{ color: "#FFF" }}>
             <span>Using </span>REACT-REDUX
@@ -82,9 +91,8 @@ export default function Form() {
               type="number"
               value={salary}
               onChange={handleSalary}
-              required
               id="standard-number"
-              label="Base Salary:"
+              label="Your Base Overtime Pay:"
               InputLabelProps={{
                 shrink: true,
               }}
@@ -100,29 +108,36 @@ export default function Form() {
                 {errors.salary?.message}
               </Typography>
             )}
-            <TextField
-              {...register("hours", {
-                required: "This is required! ",
-                min: {
-                  value: 20,
-                  message: "Must clock atleast 20 hours first",
-                },
-              })}
-              sx={{
-                margin: 1,
-              }}
-              fullWidth
-              type="number"
-              required
-              value={hours}
-              onChange={handleHours}
-              id="standard-number"
-              label="Hours clocked:"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              margin="normal"
-            />
+            <br />
+            <br />
+            <FormControl>
+              <InputLabel id="simple-select-label">
+                Overtime this week:
+              </InputLabel>
+              <Select
+                {...register("hours", {
+                  required: "This is required! ",
+                })}
+                labelId="simple-select-label"
+                id="simple-select"
+                value={hours}
+                label="Overtime this week:"
+                onChange={handleChange}
+                fullWidth
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                margin="normal"
+                sx={{ width: 400 }}
+              >
+                <MenuItem value={0}> None </MenuItem>
+                <MenuItem value={1}> 5-10 hours </MenuItem>
+                <MenuItem value={2}> 10-20 hours </MenuItem>
+                <MenuItem value={3}> 20-30 hours </MenuItem>
+                <MenuItem value={4}> 30+ hours </MenuItem>
+              </Select>
+            </FormControl>
+
             {errors.hours && (
               <Typography
                 variant="h7"
@@ -143,6 +158,7 @@ export default function Form() {
               <PaidIcon fontSize="large" />
             </IconButton>
           </form>
+          <Display />
         </Box>
       </Paper>
     </ThemeProvider>
