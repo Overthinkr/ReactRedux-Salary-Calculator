@@ -1,16 +1,37 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "./store";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Landing from "./pages/landing";
+import Salary from "./pages/salary";
+import Overtime from "./pages/overtime";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Landing />,
+    //loader:
+  },
+  {
+    path: "/salary",
+    element: <Salary />,
+    //loader:
+  },
+  {
+    path: "/overtime",
+    element: <Overtime />,
+    //loader:
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>
 );
