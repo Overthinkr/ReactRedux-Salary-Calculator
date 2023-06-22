@@ -23,14 +23,17 @@ export default function DisplaySalary() {
   }
 
   return (
-    <Box sx={{ m: 12, animation: "backwards" }}>
+    <Box sx={{ m: 8, animation: "backwards" }}>
       <Typography sx={{ fontFamily: "cursive" }}>
         {" "}
         My annual income is:
       </Typography>
       <Typography variant="h2" component="h2" sx={{ fontFamily: "cursive" }}>
-        {" "}
-        $ {(incomeaftertax * 1000).toLocaleString()}{" "}
+        {(incomeaftertax * 1000).toLocaleString("en-IN", {
+          maximumFractionDigits: 2,
+          style: "currency",
+          currency: "INR",
+        })}{" "}
       </Typography>
     </Box>
   );

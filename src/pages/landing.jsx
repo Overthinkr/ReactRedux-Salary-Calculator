@@ -3,6 +3,7 @@ import React from "react";
 import moneypic from "../moneyyyy.png";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
+import money2 from "../money2.jpg";
 
 const GetStartedButton = styled(Button)({
   boxshadow: "none",

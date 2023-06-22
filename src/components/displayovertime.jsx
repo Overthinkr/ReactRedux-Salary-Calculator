@@ -34,7 +34,7 @@ export default function DisplayOvertime() {
         My Overtime pay this week:
       </Typography>
       <Typography variant="h2" component="h2" sx={{ fontFamily: "cursive" }}>
-        {final}
+        $ {final}
       </Typography>
     </Box>
   );

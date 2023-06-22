@@ -5,8 +5,10 @@ import { Link, useHref } from "react-router-dom";
 export default function Navbar() {
   const currentPath = useHref();
 
-  const salaryColor = currentPath === "/salary" ? "#000000" : "#FFFFFF";
-  const overtimeColor = currentPath === "/overtime" ? "#000000" : "#FFFFFF";
+  const salaryColor = currentPath.includes("/salary") ? "#000000" : "#FFFFFF";
+  const overtimeColor = currentPath.includes("/overtime")
+    ? "#000000"
+    : "#FFFFFF";
   return (
     <Box sx={{ flexGrow: 1, zIndex: 9, position: "relative" }}>
       <AppBar position="static" sx={{ backgroundColor: "#31ED34" }}>

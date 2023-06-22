@@ -157,8 +157,6 @@ export default function Salary() {
                 ":hover": {
                   backgroundColor: "inherit",
                   color: "#000000",
-                  border: "1px solid",
-                  borderColor: "#000000",
                 },
               }}
             >

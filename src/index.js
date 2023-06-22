@@ -8,6 +8,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Landing from "./pages/landing";
 import Salary from "./pages/salary";
 import Overtime from "./pages/overtime";
+import TaxBreakup from "./components/taxbreakup";
+import HRA from "./components/hra";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +21,18 @@ const router = createBrowserRouter([
     path: "/salary",
     element: <Salary />,
     //loader:
+    children: [
+      {
+        path: "taxbreakup",
+        element: <TaxBreakup />,
+        //loader:
+      },
+      {
+        path: "hra",
+        element: <HRA />,
+        //loader:
+      },
+    ],
   },
   {
     path: "/overtime",
@@ -26,7 +40,6 @@ const router = createBrowserRouter([
     //loader:
   },
 ]);
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

@@ -1,11 +1,22 @@
-import React from "react";
+import React, { createContext } from "react";
 import Navbar from "../components/navbar";
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { salaryActions } from "../store/base-slice";
 import money2 from "../money2.jpg";
 import DisplaySalary from "../components/displaysalary";
+import { Outlet } from "react-router";
+import { Link } from "react-router-dom";
+
+export const SalaryContext = createContext(null);
 
 export default function Salary() {
   const {
@@ -98,8 +109,6 @@ export default function Salary() {
                 ":hover": {
                   backgroundColor: "inherit",
                   color: "#000000",
-                  border: "1px solid",
-                  borderColor: "#000000",
                 },
               }}
             >
@@ -110,6 +119,41 @@ export default function Salary() {
           {submitted ? (
             <>
               <DisplaySalary />
+              <ButtonGroup variant="text" aria-label="text button group">
+                <Link to="taxbreakup">
+                  <Button
+                    variant="contained"
+                    sx={{
+                      backgroundColor: "#31ED34",
+                      ":hover": {
+                        backgroundColor: "inherit",
+                        color: "#000000",
+                      },
+                    }}
+                  >
+                    {" "}
+                    Tax Breakup{" "}
+                  </Button>
+                </Link>
+                <Link to="hra">
+                  <Button
+                    variant="contained"
+                    sx={{
+                      backgroundColor: "#31ED34",
+                      ":hover": {
+                        backgroundColor: "inherit",
+                        color: "#000000",
+                      },
+                    }}
+                  >
+                    {" "}
+                    HRA{" "}
+                  </Button>
+                </Link>
+              </ButtonGroup>
+              <SalaryContext.Provider value={salary}>
+                <Outlet />
+              </SalaryContext.Provider>
             </>
           ) : (
             <> </>
