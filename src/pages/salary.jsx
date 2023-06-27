@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useEffect } from "react";
 import Navbar from "../components/navbar";
 import {
   Box,
@@ -13,12 +13,13 @@ import { useDispatch } from "react-redux";
 import { salaryActions } from "../store/base-slice";
 import money2 from "../money2.jpg";
 import DisplaySalary from "../components/displaysalary";
-import { Outlet } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
 export const SalaryContext = createContext(null);
 
 export default function Salary() {
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -36,6 +37,12 @@ export default function Salary() {
   const handleSalary = (event) => {
     setSalary(event.target.value);
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("LoginToken") === "null") {
+      navigate("/signin");
+    }
+  });
 
   return (
     <div>
@@ -62,7 +69,7 @@ export default function Salary() {
             sx={{
               fontFamily: "ui-monospace",
               m: 4,
-              fontWeight: "200",
+              fontWeight: 200,
             }}
           >
             Salary Calculator

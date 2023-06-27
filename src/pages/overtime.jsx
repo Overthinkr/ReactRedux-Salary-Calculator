@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../components/navbar";
 import {
   Box,
@@ -17,8 +17,10 @@ import { incomeActions } from "../store/income-slice";
 import { hourActions } from "../store/hour-slice";
 import money2 from "../money2.jpg";
 import DisplayOvertime from "../components/displayovertime";
+import { useNavigate } from "react-router";
 
 export default function Salary() {
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -42,6 +44,12 @@ export default function Salary() {
   const handleHours = (event) => {
     setHours(event.target.value);
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("LoginToken") === "null") {
+      navigate("/signin");
+    }
+  });
 
   return (
     <div>

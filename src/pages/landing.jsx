@@ -3,7 +3,6 @@ import React from "react";
 import moneypic from "../moneyyyy.png";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
-import money2 from "../money2.jpg";
 
 const GetStartedButton = styled(Button)({
   boxshadow: "none",
@@ -82,7 +81,7 @@ export default function Landing() {
             {" "}
             OF YOUR SALARY AND OVERTIME PAY
           </Typography>
-          <Link to="/salary">
+          <Link to="/signin">
             <GetStartedButton
               variant="contained"
               sx={{ marginX: "42px", marginTop: "25px" }}

@@ -10,6 +10,8 @@ import Salary from "./pages/salary";
 import Overtime from "./pages/overtime";
 import TaxBreakup from "./components/taxbreakup";
 import HRA from "./components/hra";
+import SignIn from "./components/signin";
+import SignUp from "./components/signup";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,16 @@ const router = createBrowserRouter([
   {
     path: "/overtime",
     element: <Overtime />,
+    //loader:
+  },
+  {
+    path: "/signin",
+    element: <SignIn />,
+    //loader:
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
     //loader:
   },
 ]);
