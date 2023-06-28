@@ -1,8 +1,39 @@
-import { AppBar, Box, Button, Toolbar } from "@mui/material";
-import React from "react";
+import { AppBar, Box, Button, Toolbar, Tooltip } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import blankprofpic from "../blankprofpic.jpg";
 
 export default function Navbar() {
+  const getCookie = (name) => {
+    const cookieValue = document.cookie.match(
+      "(^|;)\\s*" + name + "\\s*=\\s*([^;]+)"
+    );
+    return cookieValue ? cookieValue.pop() : "";
+  };
+
+  const token = getCookie("LoginToken");
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const requestOptions = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      };
+      const response = await fetch("/api/users/me", requestOptions);
+      if (!response.ok) {
+        console.log("Not logged in");
+      } else {
+        const data = await response.json();
+        setUser(data.username);
+      }
+    };
+    fetchUser();
+  }, [token]);
+
   const location = useLocation();
 
   const salaryColor = location.pathname.includes("/salary")
@@ -14,8 +45,21 @@ export default function Navbar() {
 
   const navigate = useNavigate();
 
+  const handleLogout = () => {
+    document.cookie =
+      "LoginToken=; expires=Thu, 11 Sep 2001 00:00:00 UTC; path=/;";
+    navigate("/signin");
+  };
+
   return (
-    <Box sx={{ flexGrow: 1, zIndex: 9, position: "relative" }}>
+    <Box
+      sx={{ flexGrow: 1, zIndex: 9, position: "relative" }}
+      onClick={() => {
+        if (getCookie("LoginToken") === "") {
+          navigate("/signin");
+        }
+      }}
+    >
       <AppBar position="static" sx={{ backgroundColor: "#31ED34" }}>
         <Toolbar sx={{ display: "flex", justifyContent: "flex-end" }}>
           <Link to="/salary" style={{ textDecoration: "none" }}>
@@ -46,11 +90,15 @@ export default function Navbar() {
               OVERTIME
             </Button>
           </Link>
+          <Tooltip title={user} arrow>
+            <img
+              src={blankprofpic}
+              alt="profile"
+              style={{ width: 40, height: 40, borderRadius: 50, margin: 6 }}
+            />
+          </Tooltip>
           <Button
-            onClick={() => {
-              localStorage.setItem("LoginToken", null);
-              navigate("/signin");
-            }}
+            onClick={handleLogout}
             variant="contained"
             sx={{
               fontFamily: "sans-serif",
@@ -60,6 +108,7 @@ export default function Navbar() {
               ":hover": {
                 backgroundColor: "#0ef012",
                 color: "#000000",
+                fontWeight: "550",
               },
             }}
           >

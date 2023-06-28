@@ -10,8 +10,9 @@ import Salary from "./pages/salary";
 import Overtime from "./pages/overtime";
 import TaxBreakup from "./components/taxbreakup";
 import HRA from "./components/hra";
-import SignIn from "./components/signin";
-import SignUp from "./components/signup";
+import SignIn from "./pages/signin";
+import SignUp from "./pages/signup";
+import CheckLoggedIn from "./components/checkloggedin";
 
 const router = createBrowserRouter([
   {
@@ -56,7 +57,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <RouterProvider router={router}>
+        <CheckLoggedIn />
+      </RouterProvider>
     </Provider>
   </React.StrictMode>
 );

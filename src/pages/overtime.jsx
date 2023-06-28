@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Navbar from "../components/navbar";
 import {
   Box,
@@ -15,7 +15,6 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { incomeActions } from "../store/income-slice";
 import { hourActions } from "../store/hour-slice";
-import money2 from "../money2.jpg";
 import DisplayOvertime from "../components/displayovertime";
 import { useNavigate } from "react-router";
 
@@ -45,11 +44,12 @@ export default function Salary() {
     setHours(event.target.value);
   };
 
-  useEffect(() => {
-    if (localStorage.getItem("LoginToken") === "null") {
-      navigate("/signin");
-    }
-  });
+  const getCookie = (name) => {
+    const cookieValue = document.cookie.match(
+      "(^|;)\\s*" + name + "\\s*=\\s*([^;]+)"
+    );
+    return cookieValue ? cookieValue.pop() : "";
+  };
 
   return (
     <div>
@@ -61,7 +61,11 @@ export default function Salary() {
           zIndex: 0,
           position: "relative",
           minHeight: "91vh",
-          backgroundImage: { money2 },
+        }}
+        onClick={() => {
+          if (getCookie("LoginToken") === "") {
+            navigate("/signin");
+          }
         }}
       >
         <Stack

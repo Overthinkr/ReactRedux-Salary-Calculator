@@ -41,6 +41,12 @@ const GetStartedButton = styled(Button)({
 });
 
 export default function Landing() {
+  const getCookie = (name) => {
+    const cookieValue = document.cookie.match(
+      "(^|;)\\s*" + name + "\\s*=\\s*([^;]+)"
+    );
+    return cookieValue ? cookieValue.pop() : "";
+  };
   return (
     <div>
       <Stack direction="row" alignItems="center">
@@ -81,7 +87,7 @@ export default function Landing() {
             {" "}
             OF YOUR SALARY AND OVERTIME PAY
           </Typography>
-          <Link to="/signin">
+          <Link to={getCookie("LoginToken") === "" ? "/signin" : "/salary"}>
             <GetStartedButton
               variant="contained"
               sx={{ marginX: "42px", marginTop: "25px" }}

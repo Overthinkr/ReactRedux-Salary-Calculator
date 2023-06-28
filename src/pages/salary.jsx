@@ -1,4 +1,4 @@
-import React, { createContext, useEffect } from "react";
+import React, { createContext } from "react";
 import Navbar from "../components/navbar";
 import {
   Box,
@@ -11,7 +11,6 @@ import {
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { salaryActions } from "../store/base-slice";
-import money2 from "../money2.jpg";
 import DisplaySalary from "../components/displaysalary";
 import { Outlet, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
@@ -38,11 +37,26 @@ export default function Salary() {
     setSalary(event.target.value);
   };
 
-  useEffect(() => {
-    if (localStorage.getItem("LoginToken") === "null") {
-      navigate("/signin");
-    }
-  });
+  const getCookie = (name) => {
+    const cookieValue = document.cookie.match(
+      "(^|;)\\s*" + name + "\\s*=\\s*([^;]+)"
+    );
+    return cookieValue ? cookieValue.pop() : "";
+  };
+
+  // useEffect(() => {
+  //   if (getCookie("LoginToken") === "") {
+  //     navigate("/signin");
+  //   }
+  //   const timer = setInterval(() => {
+  //     console.log("hello world");
+  //     if (getCookie("LoginToken") === "") {
+  //       navigate("/signin");
+  //     }
+  //   }, 1000);
+
+  //   return () => clearInterval(timer);
+  // }, []);
 
   return (
     <div>
@@ -54,7 +68,11 @@ export default function Salary() {
           zIndex: 0,
           position: "relative",
           minHeight: "91vh",
-          backgroundImage: { money2 },
+        }}
+        onClick={() => {
+          if (getCookie("LoginToken") === "") {
+            navigate("/signin");
+          }
         }}
       >
         <Stack
