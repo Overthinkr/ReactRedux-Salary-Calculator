@@ -20,10 +20,10 @@ Most of the issues encountered were simply resolved by the use of beautiful redu
 
 The usage of this project is very simple. Just enter your base weekly overtime income and pick a range of hours from the drop-down menu. Click on the '$' button below to generate the result.
 
-###To run locally:
-####Terminal 1
+### To run locally:
+#### Terminal 1
 npm start
-####Terminal 2 (cd backend)
+#### Terminal 2 (cd backend)
 venv\scripts\activate (if venv is created)
 uvicorn main:app --reload
 
