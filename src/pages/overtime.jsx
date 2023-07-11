@@ -97,12 +97,11 @@ export default function Salary() {
               {...register("salary", {
                 required: "This is required! ",
                 min: {
-                  value: 12,
-                  message: "Minimum hourly wage is   $12.00",
+                  value: 200,
+                  message: "Minimum hourly wage is ₹ 200",
                 },
               })}
               type="number"
-              id="outlined-error-helper-text"
               label="My Hourly overtime Pay:"
               defaultValue="Hello World"
               variant="filled"
@@ -137,10 +136,6 @@ export default function Salary() {
                 label="Overtime this week:"
                 onChange={handleHours}
                 fullWidth
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                margin="normal"
               >
                 <MenuItem value={0}> None </MenuItem>
                 <MenuItem value={1}> 5-10 hours </MenuItem>

@@ -1,4 +1,11 @@
-import { AppBar, Box, Button, Toolbar, Tooltip } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Button,
+  Toolbar,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import blankprofpic from "../blankprofpic.jpg";
@@ -90,7 +97,19 @@ export default function Navbar() {
               OVERTIME
             </Button>
           </Link>
-          <Tooltip title={user} arrow>
+          <Tooltip
+            title={
+              <Typography
+                sx={{
+                  fontSize: 14,
+                }}
+              >
+                {" "}
+                {user}{" "}
+              </Typography>
+            }
+            arrow
+          >
             <img
               src={blankprofpic}
               alt="profile"

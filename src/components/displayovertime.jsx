@@ -34,7 +34,12 @@ export default function DisplayOvertime() {
         My Overtime pay this week:
       </Typography>
       <Typography variant="h2" component="h2" sx={{ fontFamily: "cursive" }}>
-        $ {final.toLocaleString()}
+        {" "}
+        {final.toLocaleString("en-IN", {
+          maximumFractionDigits: 2,
+          style: "currency",
+          currency: "INR",
+        })}
       </Typography>
     </Box>
   );
