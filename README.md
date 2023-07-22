@@ -9,6 +9,7 @@ The project aims to act as a calculator for the overtime income of a person per 
 - React.js
 - Redux
 - Google Material UI (MUI)
+- FastAPI
 
 ### Challenges and Opportunities
 
